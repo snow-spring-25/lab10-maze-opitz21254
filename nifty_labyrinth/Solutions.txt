@@ -1,0 +1,4 @@
+Assuming you have not yet modified the string YOUR_NAME, the two sequences you want are
+
+Path out of labyrinth:        WNWSSSNNNEEESSWWSNEESW
+Path out of twisty labyrinth: SSEENNEWE
