@@ -6,11 +6,11 @@ using labyrinth;
  * do NOT edit the value of YourName. Changing YourName will change which
  * maze you get back, which might invalidate all your hard work!
 */
-string YOUR_NAME = "TODO: Replace this string with your name.";
+string YOUR_NAME = "Brennan Opitz";
 
 /* Change these constants to contain the paths out of your mazes. */
-string PATH_OUT_OF_MAZE = "WNWSSSNNNEEESSWWSNEESW";
-string PATH_OUT_OF_TWISTY_MAZE = "SSEENNEWE";
+string PATH_OUT_OF_MAZE = "ESWSSNESEENWENNW";
+string PATH_OUT_OF_TWISTY_MAZE = "ENEWNNSEESWN";
 
 MazeCell startLocation = MazeUtilities.mazeFor(YOUR_NAME);
 
