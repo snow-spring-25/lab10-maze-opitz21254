@@ -8,9 +8,10 @@ public enum Item
     Wand
 }
 
-/**
- * Type representing a cell in a maze.
- */ 
+public record NodeLink(MazeCell From, string Direction, MazeCell To)
+{
+    public string Label => $"{Direction} to {To.Id}";
+}
 public class MazeCell
 {
     public MazeCell()

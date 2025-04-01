@@ -6,6 +6,7 @@
 <h1>Enter your name</h1>
 <input @bind="name" />
 <button @onclick="GenerateMaze">Generate Basic Maze</button>
+<p>@pathOutOfMaze</p>
 
 @code
 {
@@ -16,15 +17,9 @@ void GenerateMaze()
     {
         MazeCell startLocation = MazeUtilities.mazeFor(name);
 
-        /* Set a breakpoint here to explore your maze! */
+        List<NodeLink> path = MazeUtilities.ExploreMaze(startLocation);
+        IEnumerable<string> instructions = path.Select(l => l.Label);
 
-        if (MazeUtilities.isPathToFreedom(startLocation, pathOutOfMaze))
-        {
-            Console.WriteLine("Congratulations! You've found a way out of your labyrinth.");
-        }
-        else
-        {
-            Console.WriteLine("Sorry, but you're still stuck in your labyrinth.");
-        }
+       pathOutOfMaze = string.Join(", ", instructions);
     }
 }

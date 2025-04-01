@@ -12,6 +12,63 @@ public enum Port
 
 public class MazeUtilities
 {
+    public static List<NodeLink> ExploreMaze(MazeCell start)
+    {
+        List<NodeLink> visited = new( );
+        visited = exploreNode(start, visited);
+        return visited;
+    }
+
+    private static List<NodeLink> exploreNode(MazeCell start, List<NodeLink> visited)
+    {
+        if(start == null)
+        {
+            return visited;
+        }
+
+        if(start.North != null)
+        {
+            var next = new NodeLink(start, "N", start.North);
+            if(visited.Contains(next) == false)
+            {
+                visited.Add(next);
+                visited = exploreNode(start.North, visited);
+            }
+        }
+
+        if(start.East != null)
+        {
+            var next = new NodeLink(start, "E", start.East);
+            if(visited.Contains(next) == false)
+            {
+                visited.Add(next);
+                visited = exploreNode(start.East, visited);
+            }
+        }
+
+        if(start.South != null)
+        {
+            var next = new NodeLink(start, "S", start.South);
+            if(visited.Contains(next) == false)
+            {
+                visited.Add(next);
+                visited = exploreNode(start.South, visited);
+            }
+        }
+
+        if(start.West != null)
+        {
+            var next = new NodeLink(start, "W", start.West);
+            if(visited.Contains(next) == false)
+            {
+                visited.Add(next);
+                visited = exploreNode(start.West, visited);
+            }
+        }
+
+        return visited;
+    }
+
     /**
      * Given a location in a maze, returns whether the given sequence of
      * steps will let you escape the maze. The steps should be given as
