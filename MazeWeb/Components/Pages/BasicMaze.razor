@@ -1,0 +1,30 @@
+@page "/BasicMaze"
+@using labyrinth
+
+<PageTitle>Basic Maze Visualizer</PageTitle>
+
+<h1>Enter your name</h1>
+<input @bind="name" />
+<button @onclick="GenerateMaze">Generate Basic Maze</button>
+
+@code
+{
+    string name;
+
+    string pathOutOfMaze = "";
+void GenerateMaze()
+    {
+        MazeCell startLocation = MazeUtilities.mazeFor(name);
+
+        /* Set a breakpoint here to explore your maze! */
+
+        if (MazeUtilities.isPathToFreedom(startLocation, pathOutOfMaze))
+        {
+            Console.WriteLine("Congratulations! You've found a way out of your labyrinth.");
+        }
+        else
+        {
+            Console.WriteLine("Sorry, but you're still stuck in your labyrinth.");
+        }
+    }
+}
