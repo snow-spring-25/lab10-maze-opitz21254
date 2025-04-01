@@ -1,5 +1,6 @@
 @page "/BasicMaze"
 @using labyrinth
+@using MermaidJS.Blazor
 
 <PageTitle>Basic Maze Visualizer</PageTitle>
 
@@ -7,19 +8,20 @@
 <input @bind="name" />
 <button @onclick="GenerateMaze">Generate Basic Maze</button>
 <p>@pathOutOfMaze</p>
+<MermaidDiagram Definition=@pathOutOfMaze />
 
 @code
 {
     string name;
 
     string pathOutOfMaze = "";
-void GenerateMaze()
+    void GenerateMaze()
     {
         MazeCell startLocation = MazeUtilities.mazeFor(name);
 
         List<NodeLink> path = MazeUtilities.ExploreMaze(startLocation);
         var instructions = path.Select(node => $"{node.From.Id}[\"{node.From}\"]--{node.Label}-->{node.To.Id}[\"{node.To}\"]");
 
-       pathOutOfMaze = "graph TD\n" + string.Join("\n, ", instructions);
+        pathOutOfMaze = "graph TD\n" + string.Join("\n, ", instructions);
     }
 }
