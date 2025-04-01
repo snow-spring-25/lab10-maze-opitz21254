@@ -18,8 +18,8 @@ void GenerateMaze()
         MazeCell startLocation = MazeUtilities.mazeFor(name);
 
         List<NodeLink> path = MazeUtilities.ExploreMaze(startLocation);
-        IEnumerable<string> instructions = path.Select(l => l.Label);
+        var instructions = path.Select(node => $"{node.From.Id}[\"{node.From}\"]--{node.Label}-->{node.To.Id}[\"{node.To}\"]");
 
-       pathOutOfMaze = string.Join(", ", instructions);
+       pathOutOfMaze = "graph TD\n" + string.Join("\n, ", instructions);
     }
 }
