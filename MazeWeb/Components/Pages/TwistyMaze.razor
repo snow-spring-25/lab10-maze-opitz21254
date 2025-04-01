@@ -1,0 +1,27 @@
+@page "/TwistyMaze"
+@using labyrinth
+@using MermaidJS.Blazor
+
+<PageTitle>Twisty Maze Visualizer</PageTitle>
+
+<h1>Enter your name</h1>
+<input @bind="name" />
+<button @onclick="GenerateMaze">Generate Basic Maze</button>
+@* <p>@pathOutOfTwistyMaze</p> *@
+<MermaidDiagram Definition=@pathOutOfTwistyMaze />
+
+@code
+{
+    string name;
+
+    string pathOutOfTwistyMaze = "";
+    void GenerateMaze()
+    {
+        MazeCell twistyStartLocation = MazeUtilities.mazeFor(name);
+
+        List<NodeLink> path = MazeUtilities.ExploreMaze(twistyStartLocation);
+        var instructions = path.Select(node => $"{node.From.Id}[\"{node.From}\"]--{node.Label}-->{node.To.Id}[\"{node.To}\"]");
+
+        pathOutOfTwistyMaze = "graph TD\n" + string.Join("\n", instructions);
+    }
+}

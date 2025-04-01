@@ -7,7 +7,6 @@
 <h1>Enter your name</h1>
 <input @bind="name" />
 <button @onclick="GenerateMaze">Generate Basic Maze</button>
-<p>@pathOutOfMaze</p>
 <MermaidDiagram Definition=@pathOutOfMaze />
 
 @code
@@ -22,6 +21,6 @@
         List<NodeLink> path = MazeUtilities.ExploreMaze(startLocation);
         var instructions = path.Select(node => $"{node.From.Id}[\"{node.From}\"]--{node.Label}-->{node.To.Id}[\"{node.To}\"]");
 
-        pathOutOfMaze = "graph TD\n" + string.Join("\n, ", instructions);
+        pathOutOfMaze = "graph TD\n" + string.Join("\n", instructions);
     }
 }
